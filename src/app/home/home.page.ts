@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { informacoes } from '../Info/Informacoes';
+import { aluno } from '../Info/alunos';
 import {HttpClient} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-home',
@@ -9,18 +10,19 @@ import {HttpClient} from '@angular/common/http';
 })
 export class HomePage implements OnInit{
 
-  public informacoes: informacoes[];
+  public alunos: aluno[];
 
   constructor(public http:HttpClient){
 
   }
 
   ngOnInit(): void{
-    this.http.get<informacoes[]>('https://gilsonpolito-api.herokuapp.com/alunos')
+    this.http.get<aluno[]>('https://gilsonpolito-api.herokuapp.com/alunos')
     .subscribe(
-      (Informacoes)=>{
-        this.informacoes = this.informacoes;
+      (alunos)=>{
+        this.alunos = alunos;
       }
+      
     )
   }
 
