@@ -1,5 +1,4 @@
-export interface aluno{    
-    idade:number
+export interface aluno{  
     nome:string
-    
+    id:number
 }
