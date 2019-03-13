@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { aluno } from '../Info/alunos';
 import {HttpClient} from '@angular/common/http';
+import { LoadingController, AlertController } from '@ionic/angular';
+import { AlunosService } from '../providers/alunos.service';
 
 
 @Component({
@@ -9,21 +11,41 @@ import {HttpClient} from '@angular/common/http';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-
   public alunos: aluno[];
 
-  constructor(public http:HttpClient){
+  constructor(private loadingCtrl:LoadingController,
+              private alertCtrl:AlertController,
+              private alunosService:AlunosService,
+               ){
 
   }
 
-  ngOnInit(): void{
-    this.http.get<aluno[]>('https://gilsonpolito-api.herokuapp.com/alunos')
+  async ngOnInit(){
+    const loading = await this.loadingCtrl.create({
+        message: 'Aguarde o carregamento...'
+  });
+
+    await loading.present();
+
+    this.alunosService.lista()
     .subscribe(
       (alunos)=>{
-        this.alunos = alunos;
+        this.alunos=alunos;
+      },      
+
+    ).add(
+      ()=>{
+        loading.dismiss();
+      }        
+    )
+    
+
+
+    
+    
       }
       
-    )
+    
   }
 
-}
+
