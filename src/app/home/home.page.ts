@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { aluno } from '../Info/alunos';
-import {HttpClient} from '@angular/common/http';
 import { LoadingController, AlertController } from '@ionic/angular';
 import { AlunosService } from '../providers/alunos.service';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -32,7 +32,15 @@ export class HomePage implements OnInit{
       (alunos)=>{
         this.alunos=alunos;
       },      
-
+      async (err: HttpErrorResponse)=>{
+        console.log('Erro'+err.status);
+        const al = await   this.alertCtrl.create({
+          header:'Erro!',
+          message:'Error ao listar carros',
+          buttons:[{text:'OK'}]
+        });
+        await al.present();
+      }
     ).add(
       ()=>{
         loading.dismiss();
