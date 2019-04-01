@@ -1,7 +1,7 @@
 <ion-header>
   <ion-toolbar>
     <ion-title>
-      Test
+      Lista Alunos 
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -9,7 +9,7 @@
 <ion-content padding>
 
   <ion-list>
-      <ion-item *ngFor="let aluno of alunos">
+      <ion-item *ngFor="let aluno of alunos" (click)="selecionaAluno(aluno)" >
         <ion-label>  {{aluno.nome}}  </ion-label>
         <ion-label>  {{aluno.id}}  </ion-label>
         

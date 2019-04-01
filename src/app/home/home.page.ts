@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { aluno } from '../Info/alunos';
-import { LoadingController, AlertController } from '@ionic/angular';
+import { Aluno } from '../Info/alunos';
+import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { AlunosService } from '../providers/alunos.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { NavigationExtras } from '@angular/router';
 
 
 @Component({
@@ -11,12 +12,12 @@ import { HttpErrorResponse } from '@angular/common/http';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  public alunos: aluno[];
+  public alunos: Aluno[];
 
   constructor(private loadingCtrl:LoadingController,
               private alertCtrl:AlertController,
               private alunosService:AlunosService,
-               ){
+              private navCtrl: NavController){
 
   }
 
@@ -44,15 +45,19 @@ export class HomePage implements OnInit{
     ).add(
       ()=>{
         loading.dismiss();
-      }        
-    )
-    
+    }        
+  )
+}
+     selecionaAluno(aluno:Aluno){
+       console.log("Aluno Selecionado: " + aluno.nome);
 
-
-    
-    
-      }
-      
+       let extras: NavigationExtras = {
+         queryParams:{
+           alunoSelecionado: JSON.stringify(aluno)
+         }
+       };
+       this.navCtrl.navigateForward(['escolha', extras]);
+     } 
     
   }
 
