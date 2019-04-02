@@ -1,8 +1,7 @@
-import { NavController } from '@ionic/angular';
 import { Component, OnInit } from '@angular/core';
+import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
-import { Aluno } from '../Info/alunos';
-
+import { Aluno } from '../Info/Alunos';
 
 @Component({
   selector: 'app-escolha',
@@ -12,17 +11,18 @@ import { Aluno } from '../Info/alunos';
 export class EscolhaPage implements OnInit {
 
   constructor(private navCtrl: NavController,
-    private activatedRoute: ActivatedRoute) { }
+  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-this.activatedRoute.queryParams
-.subscribe(params => {
-  let aluno = <Aluno>JSON.parse(params['carroSelecionado']);
-  console.log('O carro que chegou na pagina de escolha é: ' + aluno.nome);
-});
-  }
+    this.activatedRoute.queryParams
+    .subscribe(params => {
+      let aluno = <Aluno>JSON.parse(params['alunoSelecionado']);
 
-  voltar() {
+      console.log('O aluno chegou na página de escolha foi: ' + aluno.nome);
+
+    });   
+  }
+  voltar(){
     this.navCtrl.back();
   }
 

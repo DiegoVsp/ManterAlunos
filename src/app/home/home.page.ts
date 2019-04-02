@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Aluno } from '../Info/alunos';
+import {HttpErrorResponse} from '@angular/common/http';
+import { Aluno } from '../Info/Alunos';
 import { LoadingController, AlertController, NavController } from '@ionic/angular';
 import { AlunosService } from '../providers/alunos.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { NavigationExtras } from '@angular/router';
 
 
