@@ -16,12 +16,13 @@ export class EscolhaPage implements OnInit {
   ngOnInit() {
     this.activatedRoute.queryParams
     .subscribe(params => {
-      let aluno = <Aluno>JSON.parse(params['alunoSelecionado']);
+      let aluno = <Aluno>JSON.parse(params["alunoSelecionado"]);
 
-      console.log('O aluno chegou na página de escolha foi: ' + aluno.nome);
+      console.log("O aluno chegou na página de escolha foi: " + aluno.nome);
 
     });   
   }
+
   voltar(){
     this.navCtrl.back();
   }
