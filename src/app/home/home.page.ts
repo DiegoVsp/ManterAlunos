@@ -53,10 +53,10 @@ export class HomePage implements OnInit{
 
        let extras: NavigationExtras = {
          queryParams:{
-           alunoSelecionado: JSON.stringify(aluno)           
+           "alunoSelecionado": JSON.stringify(aluno),           
          }
        };
-       this.navCtrl.navigateForward(['escolha', extras]);
+       this.navCtrl.navigateForward(['escolha'], extras);
      } 
     
   }
