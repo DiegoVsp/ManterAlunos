@@ -12,8 +12,7 @@ import { Materias } from '../Info/Materias';
 export class EscolhaPage implements OnInit {
 
   private aluno: Aluno
-  private materias: Materias[];
-  private aulasTotal: number;
+  
 
   constructor(private navCtrl: NavController,
   private activatedRoute: ActivatedRoute) { }
@@ -25,21 +24,9 @@ export class EscolhaPage implements OnInit {
 
       console.log("O aluno chegou na página de escolha foi: " + this.aluno.nome);
 
-    });   
-    
-      
-
-    this.materias = [
-      {nome: "Português", tipo:1},
-      {nome: "Matemática", tipo:1},
-      {nome: "Inglês", tipo:1},
-      {nome: "Ciência", tipo:1},
-
-    ];
- 
-    
+    });     
     }
-    atualizarMaterias(ativo:boolean, materias: Materias){
-      ativo ? this.aulasTotal += materias.tipo : this.aulasTotal -= materias.tipo
+    avancarCadastro(){
+     this.navCtrl.navigateForward(['cadastro']);
     }
   }
