@@ -5,9 +5,33 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item (click)='voltar()'>
-      <h2>Voltar</h2>
+  <ion-item-group>
+    <ion-item-divider color="danger">
+        <ion-icon name="aluno"></ion-icon>
+       <h3>Aluno</h3>        
+    </ion-item-divider>
+    <ion-item>{{aluno.nome}}</ion-item>
+    
+  </ion-item-group>
+  <ion-item-group>
+    <ion-item-divider color="light">
+      <ion-icon ></ion-icon>
+      Matérias
+    </ion-item-divider>
+    <ion-item *ngFor="let materia of materias">
+      <ion-label>
+        <h2>{{materia.nome}}</h2>
+        
+        
+      </ion-label>
+      <ion-toggle #toggle (ionChange)="atualizarMaterias(toggle.checked, materia)" color="light"></ion-toggle>
     </ion-item>
+  </ion-item-group>
+  <ion-item-divider color="light">
+    Total de Matérias:
+  </ion-item-divider>
+  <ion-list>
+    
+
   </ion-list>
 </ion-content>

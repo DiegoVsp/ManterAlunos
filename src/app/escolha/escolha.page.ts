@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { Aluno } from '../Info/Alunos';
+import { Materias } from '../Info/Materias';
 
 @Component({
   selector: 'app-escolha',
@@ -10,21 +11,35 @@ import { Aluno } from '../Info/Alunos';
 })
 export class EscolhaPage implements OnInit {
 
+  private aluno: Aluno
+  private materias: Materias[];
+  private aulasTotal: number;
+
   constructor(private navCtrl: NavController,
   private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
     this.activatedRoute.queryParams
     .subscribe(params => {
-      let aluno = <Aluno>JSON.parse(params['alunoSelecionado']);
+      this.aluno = <Aluno>JSON.parse(params['alunoSelecionado']);
 
-      console.log("O aluno chegou na página de escolha foi: " + aluno.nome);
+      console.log("O aluno chegou na página de escolha foi: " + this.aluno.nome);
 
     });   
-  }
+    
+      
 
-  voltar(){
-    this.navCtrl.back();
-  }
+    this.materias = [
+      {nome: "Português", tipo:1},
+      {nome: "Matemática", tipo:1},
+      {nome: "Inglês", tipo:1},
+      {nome: "Ciência", tipo:1},
 
-}
+    ];
+ 
+    
+    }
+    atualizarMaterias(ativo:boolean, materias: Materias){
+      ativo ? this.aulasTotal += materias.tipo : this.aulasTotal -= materias.tipo
+    }
+  }
